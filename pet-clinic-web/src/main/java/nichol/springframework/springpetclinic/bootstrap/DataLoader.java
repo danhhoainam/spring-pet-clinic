@@ -1,4 +1,4 @@
-package nichol.springframework.springpetclinic.boostrap;
+package nichol.springframework.springpetclinic.bootstrap;
 
 import nichol.springframework.springpetclinic.model.Owner;
 import nichol.springframework.springpetclinic.model.Vet;
