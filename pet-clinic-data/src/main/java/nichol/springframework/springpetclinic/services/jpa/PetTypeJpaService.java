@@ -11,7 +11,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
-@Profile("jpa")
+@Profile("jpadata")
 public class PetTypeJpaService implements PetTypeService {
 
 	private final PetTypeRepository petTypeRepository;

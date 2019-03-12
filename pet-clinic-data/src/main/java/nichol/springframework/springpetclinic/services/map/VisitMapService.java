@@ -3,11 +3,13 @@ package nichol.springframework.springpetclinic.services.map;
 import nichol.springframework.springpetclinic.model.Visit;
 import nichol.springframework.springpetclinic.services.PetService;
 import nichol.springframework.springpetclinic.services.VisitService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@Profile({"default", "mapdata"})
 public class VisitMapService extends AbstractMapService<Visit, Long> implements VisitService {
 
 	private final PetService petService;

@@ -13,7 +13,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
-@Profile("jpa")
+@Profile("jpadata")
 public class OwnerJpaService implements OwnerService {
 
 	private final OwnerRepository ownerRepository;
