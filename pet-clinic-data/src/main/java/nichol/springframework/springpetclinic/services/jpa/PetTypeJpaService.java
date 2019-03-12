@@ -17,12 +17,14 @@ public class PetTypeJpaService implements PetTypeService {
 	private final PetTypeRepository petTypeRepository;
 
 	public PetTypeJpaService(PetTypeRepository petTypeRepository) {
+
 		this.petTypeRepository = petTypeRepository;
 	}
 
 
 	@Override
 	public Set<PetType> findAll() {
+
 		Set<PetType> petTypes = new HashSet<>();
 		petTypeRepository.findAll().forEach(petTypes::add);
 		return petTypes;
@@ -30,22 +32,26 @@ public class PetTypeJpaService implements PetTypeService {
 
 	@Override
 	public PetType findById(Long id) {
+
 		Optional<PetType> optionalPetType = petTypeRepository.findById(id);
 		return optionalPetType.orElse(null);
 	}
 
 	@Override
 	public PetType save(PetType petType) {
+
 		return petTypeRepository.save(petType);
 	}
 
 	@Override
 	public void delete(PetType petType) {
+
 		petTypeRepository.save(petType);
 	}
 
 	@Override
 	public void deleteById(Long id) {
+
 		petTypeRepository.deleteById(id);
 	}
 }

@@ -17,11 +17,13 @@ public class VetJpaService implements VetService {
 	private final VetRepository vetRepository;
 
 	public VetJpaService(VetRepository vetRepository) {
+
 		this.vetRepository = vetRepository;
 	}
 
 	@Override
 	public Set<Vet> findAll() {
+
 		Set<Vet> vets = new HashSet<>();
 		vetRepository.findAll().forEach(vets::add);
 		return vets;
@@ -29,22 +31,26 @@ public class VetJpaService implements VetService {
 
 	@Override
 	public Vet findById(Long id) {
+
 		Optional<Vet> optionalVet = vetRepository.findById(id);
 		return optionalVet.orElse(null);
 	}
 
 	@Override
 	public Vet save(Vet vet) {
+
 		return vetRepository.save(vet);
 	}
 
 	@Override
 	public void delete(Vet vet) {
+
 		vetRepository.delete(vet);
 	}
 
 	@Override
 	public void deleteById(Long id) {
+
 		vetRepository.deleteById(id);
 	}
 }
