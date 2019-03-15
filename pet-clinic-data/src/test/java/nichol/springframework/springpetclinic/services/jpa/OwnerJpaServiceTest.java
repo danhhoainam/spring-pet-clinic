@@ -2,8 +2,6 @@ package nichol.springframework.springpetclinic.services.jpa;
 
 import nichol.springframework.springpetclinic.model.Owner;
 import nichol.springframework.springpetclinic.repositories.OwnerRepository;
-import nichol.springframework.springpetclinic.repositories.PetRepository;
-import nichol.springframework.springpetclinic.repositories.PetTypeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -29,11 +27,11 @@ class OwnerJpaServiceTest {
 	@Mock
 	OwnerRepository ownerRepository;
 
-	@Mock
-	PetRepository petRepository;
-
-	@Mock
-	PetTypeRepository petTypeRepository;
+//	@Mock
+//	PetRepository petRepository;
+//
+//	@Mock
+//	PetTypeRepository petTypeRepository;
 
 	@InjectMocks
 	OwnerJpaService ownerService;
@@ -47,10 +45,14 @@ class OwnerJpaServiceTest {
 
 	@Test
 	void findByLastName() {
+
+		// given
 		when(ownerRepository.findByLastName(any())).thenReturn(expectedOwner);
 
+		// when
 		Owner smith = ownerService.findByLastName(LAST_NAME);
 
+		// then
 		assertEquals(LAST_NAME, smith.getLastName());
 		Mockito.verify(ownerRepository).findByLastName(any());
 	}
@@ -75,35 +77,42 @@ class OwnerJpaServiceTest {
 
 	@Test
 	void findById() {
+		// given
 		when(ownerRepository.findById(anyLong())).thenReturn(Optional.of(expectedOwner));
 
+		// when
 		Owner result = ownerService.findById(1L);
 
+		// then
 		assertNotNull(result);
-
+		verify(ownerRepository).findById(anyLong());
 	}
 
 	@Test
 	void findByIdNotFound() {
+		// given
 		when(ownerRepository.findById(anyLong())).thenReturn(Optional.empty());
 
+		// when
 		Owner result = ownerService.findById(1L);
 
+		// then
 		assertNull(result);
-
+		verify(ownerRepository).findById(anyLong());
 	}
 
 	@Test
 	void save() {
 
+		// given
 		Owner owner = Owner.builder().id(1L).build();
-
 		when(ownerRepository.save(any())).thenReturn(owner);
 
+		// when
 		Owner savedOwner = ownerService.save(owner);
 
+		// then
 		assertNotNull(savedOwner);
-
 		verify(ownerRepository).save(any());
 
 	}
@@ -111,16 +120,20 @@ class OwnerJpaServiceTest {
 	@Test
 	void delete() {
 
+		// when
 		ownerService.delete(expectedOwner);
 
+		// then
 		verify(ownerRepository, times(1)).delete(any());
 	}
 
 	@Test
 	void deleteById() {
 
+		// when
 		ownerService.deleteById(1L);
 
+		// then
 		verify(ownerRepository, times(1)).deleteById(anyLong());
 	}
 }

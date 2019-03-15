@@ -32,7 +32,8 @@ class OwnerMapServiceTest {
 	@Test
 	void deleteById() {
 
-
+		ownerMapService.deleteById(ownerId);
+		assertEquals(0, ownerMapService.findAll().size());
 	}
 
 	@Test
